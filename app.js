@@ -11,15 +11,16 @@ const connection = mysql.createConnection({
   password: '',
   database: 'list_app'
 });
-app.get('/',(req, res) => {
+
+app.get('/', (req, res) => {
   res.render('top.ejs');
 });
 
-app.get('/index',(req, res) => {
+app.get('/index', (req, res) => {
   connection.query(
-    'SELECT*FROM items',
-    (error,results) => {
-      res.render('index.ejs',{items: results})
+    'SELECT * FROM items',
+    (error, results) => {
+      res.render('index.ejs', {items: results});
     }
   );
 });
@@ -29,11 +30,16 @@ app.get('/new', (req, res) => {
 });
 
 app.post('/create', (req, res) => {
-  console.log(req.body.itemName);
   connection.query(
-    'SELECT * FROM items',
+    'INSERT INTO items (name) VALUES (?)',
+    [req.body.itemName],
     (error, results) => {
-      res.render('index.ejs', {items: results});
+      connection.query(
+        'SELECT * FROM items',
+        (error, results) => {
+          res.render('index.ejs', {items: results});
+        }
+      );  
     }
   );
 });
