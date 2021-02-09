@@ -39,7 +39,7 @@ app.post('/create', (req, res) => {
   );
 });
 
-app.post('/delete', (req, res) => {
+app.post('/delete/:id', (req, res) => {
   res.redirect('/index');
 });
 app.listen(3000);
