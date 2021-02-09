@@ -27,4 +27,13 @@ app.get('/new', (req, res) => {
   res.render('new.ejs');
 });
 
+app.post('/create', (req, res) => {
+  connection.query(
+    'SELECT * FROM items',
+    (error, results) => {
+      res.render('index.ejs', {items: results});
+    }
+  );
+});
+
 app.listen(3000);
