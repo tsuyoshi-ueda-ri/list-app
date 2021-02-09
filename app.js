@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const app = express();
 
 app.use(express.static('public'));
+app.use(express.urlencoded({extended: false}));
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -28,6 +29,7 @@ app.get('/new', (req, res) => {
 });
 
 app.post('/create', (req, res) => {
+  console.log(req.body.itemName);
   connection.query(
     'SELECT * FROM items',
     (error, results) => {
