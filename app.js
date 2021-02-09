@@ -7,7 +7,7 @@ app.use(express.static('public'));
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '01080108tp',
+  password: '',
   database: 'list_app'
 });
 app.get('/',(req, res) => {
@@ -15,7 +15,12 @@ app.get('/',(req, res) => {
 });
 
 app.get('/index',(req, res) => {
-  res.render('index.ejs');
+  connection.query(
+    'SELECT*FROM items',
+    (error,results) => {
+      res.render('index.ejs',{items: results})
+    }
+  );
 });
 
 app.listen(3000);
