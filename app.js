@@ -11,4 +11,8 @@ app.get('/top',(req, res) => {
   res.render('top.ejs');
 });
 
+app.get('/index',(req, res) => {
+  res.render('index.ejs')
+});
+
 app.listen(3000);
