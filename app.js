@@ -47,4 +47,9 @@ app.post('/delete/:id', (req, res) => {
       res.redirect('/index');
     });
 });
+
+app.get('/edit/:id',(req, res) => {
+  res.render('edit.ejs')
+});
+
 app.listen(3000);
