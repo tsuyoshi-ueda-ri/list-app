@@ -57,4 +57,8 @@ app.get('/edit/:id',(req, res) => {
     });
 });
 
+app.post('/update/:id', (req, res) => {
+  res.redirect('/index');
+ });
+
 app.listen(3000);
