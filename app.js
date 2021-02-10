@@ -47,4 +47,14 @@ app.post('/delete/:id', (req, res) => {
       res.redirect('/index');
     });
 });
+
+app.get('/edit/:id',(req, res) => {
+  connection.query(
+    'SELECT * FROM items WHERE id = ?',
+    [req.params.id],
+    (error,results) => {
+      res.render('edit.ejs',{item: results[0]});
+    });
+});
+
 app.listen(3000);
