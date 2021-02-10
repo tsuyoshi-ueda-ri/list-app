@@ -58,7 +58,13 @@ app.get('/edit/:id',(req, res) => {
 });
 
 app.post('/update/:id', (req, res) => {
-  res.redirect('/index');
- });
-
+  // 選択されたメモを更新する処理を書いてください
+  connection.query(
+    'UPDATE items SET name = ? WHERE id = ?',
+    [req.body.itemName , req.params.id ],
+    (error, results) => {
+      res.redirect('/index');
+    }
+  ); 
+});
 app.listen(3000);
