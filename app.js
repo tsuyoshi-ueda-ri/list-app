@@ -40,6 +40,11 @@ app.post('/create', (req, res) => {
 });
 
 app.post('/delete/:id', (req, res) => {
-  res.redirect('/index');
+  connection.query(
+    'DELETE FROM items WHERE id = ?',
+    [req.params.id],
+    (error,results) => {
+      res.redirect('/index');
+    });
 });
 app.listen(3000);
